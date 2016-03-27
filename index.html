@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <title>测试</title>
+    <style>
+    #move {
+        position: fixed;
+        top: 30%;
+        left: -200px;
+        background: red;
+        width: 200px;
+        height: 150px
+    }
+    
+    #move span {
+        position: absolute;
+        top: 50px;
+        right: -20px;
+        height: 50px;
+        background: blue;
+        color: #fff;
+        width: 20px
+    }
+    </style>
+</head>
+
+<body>
+    <div id="move"><span>分享</span></div>
+    <script type="text/javascript">
+    var timer,timer1;
+    window.onload = function() {
+        var oDiv = document.getElementById('move');
+        oDiv.onmouseover = function() {
+        	if(timer1)
+        		clear(timer1);
+            starMove();
+        }
+        oDiv.onmouseout = function() {
+        	if(timer)
+        		clear(timer);
+            starMove1();
+        }
+    }
+
+    function starMove() { 
+        timer = setInterval(function() {
+        	var oDiv = document.getElementById('move');
+        	console.log(oDiv.offsetLeft)
+            if (oDiv.offsetLeft >=0) {
+            	console.log("a")
+                clear(timer);
+            } else {
+                oDiv.style.left = (oDiv.offsetLeft + 2) + 'px';
+            }
+        }, 5);
+    }
+
+    function starMove1() {
+        timer1 = setInterval(function() {
+        	var oDiv = document.getElementById('move');
+        		console.log(oDiv.offsetLeft)
+                if (oDiv.offsetLeft <= -200) {
+                	console.log("b");
+                    clear(timer1);
+                } else {
+                    oDiv.style.left = (oDiv.offsetLeft - 2) + 'px';
+                    //console.log(oDiv.offsetLeft)
+                }
+            }, 5);
+        
+
+    }
+
+    function clear(obj) {
+    	clearInterval(obj);
+    }
+    </script>
+</body>
+
+</html>
